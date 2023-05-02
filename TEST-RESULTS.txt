@@ -1,0 +1,39 @@
+Softverske greske ,nedostaci i propusti su sledeci :
+Metodu 'ToString' treba preimenovati u 'toString' 
+Metoda Calculate ne obradjuje slucaj u kojem ulazni izraz ima zagrade 
+Metoda Calculate ne moze raditi kompleksnije aritmeticke operacije korenovanje kvadratiranje... 
+
+Sistemsko testiranje po metodi crne kutije:
+Kako bi smo tetsirali ovaj kod Calculate uradicemo sledece:
+*Testiranje osnovnih aritmetickih operacija sa celim brojevima:
+Ulaz:2+3 izlaz:5
+Ulaz:4-1 izlaz:3
+*Sa negativnim celim brojevima:
+Ulaz:-2+3 izlaz:1
+Ulaz:4-7 izalz:-3
+*Sa decimalnim brojevima:
+Ulaz:2.5+3.5 izlaz:6
+Ulaz:4.2-1.7 izlaz:2.5
+*Deljenje sa nulom:
+Ulaz:4/0 izlaz:Infitity
+Ulaz:-4/0 izlaz:Infitity
+*Testiranje sa nevazecim karakterima:
+Ulaz:2+x izlaz:ERROR 
+Ulaz:5^2 izlaz:ERROR
+*Testiranje sa zagradom
+Ulaz:2+(3-1) ilzaz:ERROR
+
+jedan jedinicni test bi izgledao ovako : 
+import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+
+public class CalculatorTest {
+
+    @Test
+    public void testBasicAddition() {
+        String expression = "3+2";
+        String expected = "5.0";
+        String actual = Calculator.Run(expression);
+        assertEquals(expected, actual);
+    }
+}
